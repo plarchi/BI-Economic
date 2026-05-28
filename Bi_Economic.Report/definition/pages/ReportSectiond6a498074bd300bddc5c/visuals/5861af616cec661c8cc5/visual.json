@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "5861af616cec661c8cc5",
+  "position": {
+    "x": 0,
+    "y": 96.4065335753176,
+    "z": 1000,
+    "height": 32.522686025408348,
+    "width": 144.02903811252267,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Project Risk",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "16px"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "parentGroupName": "e9b1f6d46b2100c2046c"
+}

@@ -1,0 +1,185 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "736a319657d25179d45b",
+  "position": {
+    "x": 764.28312159709617,
+    "y": 159.12885662431941,
+    "z": 11000,
+    "height": 518.0399274047187,
+    "width": 515.71687840290383,
+    "tabOrder": 11000
+  },
+  "visual": {
+    "visualType": "donutChart",
+    "query": {
+      "queryState": {
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Actualk Costs"
+                        }
+                      },
+                      "Property": "Total Forecast"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Actualk Costs.Total Forecast)",
+              "nativeQueryRef": "Forecast 2010 to 2013 & Beyond",
+              "displayName": "Forecast 2010 to 2013 & Beyond"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Budget"
+                        }
+                      },
+                      "Property": "Budget Allocated Until 2010/11  £'000s"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Budget.Budget Allocated Until 2010/11  £'000s)",
+              "nativeQueryRef": "Allocated until 2010",
+              "displayName": "Allocated until 2010"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Budget"
+                        }
+                      },
+                      "Property": "Total Project Budget Approved £'000s"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Budget.Total Project Budget Approved £'000s)",
+              "nativeQueryRef": "Approved Budget",
+              "displayName": "Approved Budget"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Actualk Costs"
+                      }
+                    },
+                    "Property": "Total Forecast"
+                  }
+                },
+                "Function": 0
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "legend": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "position": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Top'"
+                }
+              }
+            },
+            "showTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Forecast, Allocated and Approved for the Department:'"
+                }
+              }
+            },
+            "heading": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Heading2'"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Corbel'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

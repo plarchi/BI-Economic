@@ -1,0 +1,77 @@
+table Budget
+	lineageTag: 89dc687c-1b88-451b-bb23-1439910098d8
+
+	column 'Project ID'
+		dataType: string
+		lineageTag: 74449378-f347-4876-85fd-2002b60739aa
+		summarizeBy: none
+		sourceColumn: Project ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Project Name'
+		dataType: string
+		lineageTag: 1b5bea5c-075e-42ba-bc44-a63e947de3e2
+		summarizeBy: none
+		sourceColumn: Project Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Total Project Budget Approved £''000s'
+		dataType: double
+		lineageTag: 0ee1feb4-7cb0-48a3-9593-218a7785f20e
+		summarizeBy: sum
+		sourceColumn: Total Project Budget Approved £'000s
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Funding for 2010/11 £''000s'
+		dataType: double
+		formatString: 0
+		lineageTag: c3301715-270b-4eb7-928a-81bb7a4d466c
+		summarizeBy: sum
+		sourceColumn: Funding for 2010/11 £'000s
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Budget Allocated Until 2010/11  £''000s'
+		dataType: double
+		lineageTag: ebab0152-e331-4727-8a12-e0dff3f3f094
+		summarizeBy: sum
+		sourceColumn: Budget Allocated Until 2010/11  £'000s
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Last Budget Review'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: bf802a74-8522-4855-b3ef-9ffd4ff19324
+		summarizeBy: none
+		sourceColumn: Last Budget Review
+
+		variation Variation
+			isDefault
+			relationship: 5a5d763f-b584-4487-a887-15cd55aa2fd7
+			defaultHierarchy: LocalDateTable_7e528e10-2624-4090-b507-7be6d1d9622f.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition Budget = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\OneDrive_plarchi\OneDrive - connect.hku.hk\Data_Engineering\MsC_Edinburgh\XL002942_Business_Intelligence\Coursework_2\PowerBI\Coursework Dataset v1.0_Clean.xlsx"), null, true),
+				    Budget_Sheet = Source{[Item="Budget",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Budget_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Project ID", type text}, {"Project Name", type text}, {"Total Project Budget Approved £'000s", type number}, {"Funding for 2010/11 £'000s", type number}, {"Budget Allocated Until 2010/11  £'000s", type number}, {"Last Budget Review", type date}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,125 @@
+table 'Critical Action Tracker'
+	lineageTag: ad612b25-cd44-4ee0-acdb-37870a2df499
+
+	column 'Project ID'
+		dataType: string
+		lineageTag: 50d37b71-725e-4f9c-a2a6-2012bc683ff7
+		summarizeBy: none
+		sourceColumn: Project ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Action ID'
+		dataType: string
+		lineageTag: 7927ff7a-9601-40af-9760-3a083b5ecde5
+		summarizeBy: none
+		sourceColumn: Action ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Date Added '
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 01d318cc-626f-4f57-81c0-83f4a83a96e2
+		summarizeBy: none
+		sourceColumn: "Date Added "
+
+		variation Variation
+			isDefault
+			relationship: bc2ff816-0a7a-41f7-a8a3-a8f4c1c9e055
+			defaultHierarchy: LocalDateTable_8f083cb6-8152-40a3-9151-6c8281fdf704.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Action Title'
+		dataType: string
+		lineageTag: 8b05d62a-5c76-4f57-aa50-a7319ae22d51
+		summarizeBy: none
+		sourceColumn: Action Title
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Action Details'
+		dataType: string
+		lineageTag: 302be7be-a5e3-4d90-a53f-23fbcaf4688c
+		summarizeBy: none
+		sourceColumn: Action Details
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Status Update'
+		dataType: string
+		lineageTag: 41dcffd5-2731-48a1-813c-84e30b36be95
+		summarizeBy: none
+		sourceColumn: Status Update
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Target Closure Date '
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 3d33f94a-e5ab-46c3-89dd-d9697795cb43
+		summarizeBy: none
+		sourceColumn: "Target Closure Date "
+
+		variation Variation
+			isDefault
+			relationship: 7192374c-0d97-4b6f-96aa-f799e4d4c9e2
+			defaultHierarchy: LocalDateTable_036329d0-ae0b-4518-baec-d41b900f53b1.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Status
+		dataType: string
+		lineageTag: 7ab56791-2b5e-4b7a-801d-3435bf9b0da1
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column RAG
+		dataType: string
+		lineageTag: a7444ed9-b12a-4702-8f8e-bec8e0c8f832
+		summarizeBy: none
+		sourceColumn: RAG
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'CAL Status '
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: dcc68021-7e5e-4e12-94d9-fad3e22d7abd
+		summarizeBy: none
+		sourceColumn: "CAL Status "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Status Update String' = SUBSTITUTE('Critical Action Tracker'[Status Update], LEFT('Critical Action Tracker'[Status Update], FIND(" ",'Critical Action Tracker'[Status Update])), "")
+		lineageTag: 0b08153b-e589-423e-812b-8d6d0d568057
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column TimeTracker = FORMAT('Critical Action Tracker'[Target Closure Date ] - 'Critical Action Tracker'[Date Added ], "dd/MM/yy")
+		lineageTag: 666d8396-eeca-42f3-b3e5-0aa6ba2a3a7e
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Critical Action Tracker' = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\OneDrive_plarchi\OneDrive - connect.hku.hk\Data_Engineering\MsC_Edinburgh\XL002942_Business_Intelligence\Coursework_2\PowerBI\Coursework Dataset v1.0_Clean.xlsx"), null, true),
+				    #"Critical Action Tracker_Sheet" = Source{[Item="Critical Action Tracker",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Critical Action Tracker_Sheet", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Project ID", type text}, {"Action ID", type text}, {"Date Added ", type date}, {"Action Title", type text}, {"Action Details", type text}, {"Status Update", type text}, {"Target Closure Date ", type date}, {"Status", type text}, {"RAG", type text}, {"CAL Status ", type logical}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

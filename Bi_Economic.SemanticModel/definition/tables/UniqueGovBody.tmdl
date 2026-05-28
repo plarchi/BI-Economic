@@ -1,0 +1,17 @@
+table UniqueGovBody
+	lineageTag: 358db9ba-b315-4278-84f5-cd0f4ec988cc
+
+	column 'Responsible Government Body'
+		lineageTag: c39c9737-a788-492d-a4f3-78e797d602af
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Project Register[Responsible Government Body]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition UniqueGovBody = calculated
+		mode: import
+		source = DISTINCT('Project Register'[Responsible Government Body])
+
+	annotation PBI_Id = 5f1282a820d54552b295d7ed42e26a1f
+

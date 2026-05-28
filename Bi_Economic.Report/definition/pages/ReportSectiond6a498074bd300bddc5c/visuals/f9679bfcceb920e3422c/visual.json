@@ -1,0 +1,35 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "f9679bfcceb920e3422c",
+  "position": {
+    "x": 22.70780399274048,
+    "y": 0,
+    "z": 0,
+    "height": 96,
+    "width": 80,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "image",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "imageUrl": {
+              "expr": {
+                "ResourcePackageItem": {
+                  "PackageName": "RegisteredResources",
+                  "PackageType": 1,
+                  "ItemName": "uk-government-crown-crest-logo08398960246839904.png"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "parentGroupName": "e9b1f6d46b2100c2046c",
+  "howCreated": "InsertVisualButton"
+}

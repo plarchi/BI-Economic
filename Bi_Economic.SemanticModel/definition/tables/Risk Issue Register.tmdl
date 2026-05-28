@@ -1,0 +1,115 @@
+table 'Risk Issue Register'
+	lineageTag: 942adad3-cd27-4bc0-87fc-c1d024e8b0c2
+
+	measure HighRiskImpact = COUNTROWS(FILTER('Risk Issue Register', 'Risk Issue Register'[Column5] = "High"))
+		formatString: 0
+		lineageTag: dbe4f869-0b48-4a2c-a5dc-0e8bf1d702f2
+
+	measure MediumRiskImpact = COUNTROWS(FILTER('Risk Issue Register', 'Risk Issue Register'[Column5] = "Medium"))
+		formatString: 0
+		lineageTag: 17aaf61b-81c7-4899-87ab-a6a526b469e1
+
+	measure TotalRiskImpact = COUNTROWS(FILTER('Risk Issue Register', 'Risk Issue Register'[Column5] = "High" || 'Risk Issue Register'[Column5] = "Medium"))
+		formatString: 0
+		lineageTag: a799d4e3-e1cc-4f98-b0aa-6bd5af965128
+
+	column Column1
+		dataType: string
+		lineageTag: 860a0964-89de-472b-a607-6eddde337d4e
+		summarizeBy: none
+		sourceColumn: Column1
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column2
+		dataType: string
+		lineageTag: 34c0d095-7001-4433-9c78-17d59b08a890
+		summarizeBy: none
+		sourceColumn: Column2
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column3
+		dataType: string
+		lineageTag: 09f470bc-0f8c-4aa9-ba25-718e39229c7e
+		summarizeBy: none
+		sourceColumn: Column3
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column4
+		dataType: string
+		lineageTag: 95777135-1c52-427b-b0b4-d7ff50042698
+		summarizeBy: none
+		sourceColumn: Column4
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column5
+		dataType: string
+		lineageTag: 95761d9e-4d61-4ece-8ec2-269cc35eb756
+		summarizeBy: none
+		sourceColumn: Column5
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column6
+		dataType: string
+		lineageTag: ef103649-75eb-481d-b3c2-92e6630b43bc
+		summarizeBy: none
+		sourceColumn: Column6
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column7
+		dataType: string
+		lineageTag: 73f7a8ee-071d-46c9-94a8-56a695ba425c
+		summarizeBy: none
+		sourceColumn: Column7
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column8
+		dataType: string
+		lineageTag: f8ff20c5-2ebf-47ca-af18-92897793cfe5
+		summarizeBy: none
+		sourceColumn: Column8
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column9
+		dataType: string
+		lineageTag: f1c57ae4-24f7-4f6e-a14c-fc6b2bd5c625
+		summarizeBy: none
+		sourceColumn: Column9
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column10
+		dataType: string
+		lineageTag: b4b58f42-333d-4a34-9546-973897611353
+		summarizeBy: none
+		sourceColumn: Column10
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column11
+		dataType: string
+		lineageTag: 68bd150d-1644-43e2-9f9e-384dec7c13c3
+		summarizeBy: none
+		sourceColumn: Column11
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Risk Issue Register' = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\OneDrive_plarchi\OneDrive - connect.hku.hk\Data_Engineering\MsC_Edinburgh\XL002942_Business_Intelligence\Coursework_2\PowerBI\Coursework Dataset v1.0_Clean.xlsx"), null, true),
+				    #"Risk Issue Register_Sheet" = Source{[Item="Risk Issue Register",Kind="Sheet"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(#"Risk Issue Register_Sheet",{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type text}, {"Column5", type text}, {"Column6", type text}, {"Column7", type text}, {"Column8", type text}, {"Column9", type text}, {"Column10", type text}, {"Column11", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

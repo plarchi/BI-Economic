@@ -1,0 +1,96 @@
+table 'Business Case'
+	lineageTag: 0e0a5f96-66fa-4eec-b6df-eadbdee058a9
+
+	measure RevenueKPI = DIVIDE(SUM('Business Case'[Economic Benefits £'000]), SUM('Business Case'[Predicted Return on Investment]))
+		lineageTag: 7825c9c5-bf43-4225-a858-4adfc42745b5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Benefit' = SUM('Business Case'[Economic Benefits £'000]) + SUM('Business Case'[Other Benefits (£'000)])
+		formatString: #,0.00
+		lineageTag: 1aca77d0-8c57-4290-a076-a54a58184a07
+		dataCategory: Latitude
+
+	measure BenefitKPI = DIVIDE([Total Benefit], SUM('Business Case'[Predicted Costs £'000]))
+		lineageTag: 4eb113d1-b410-465a-8d98-685d97b7140f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure ConsultancyKPI = DIVIDE(SUM('Actualk Costs'[Client Side Consultancy Costs]), [Total Benefit])
+		formatString: 0.00
+		lineageTag: ebc402ea-fbea-41ef-98ed-fb458fe91bff
+
+	column 'Project ID'
+		dataType: string
+		lineageTag: 888cf11f-5880-433b-ab96-2e78e3fb053d
+		summarizeBy: none
+		sourceColumn: Project ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Project Name'
+		dataType: string
+		lineageTag: df297222-dec7-4913-9bb2-383ff907315e
+		summarizeBy: none
+		sourceColumn: Project Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Financial Savings - Total (£''000)'
+		dataType: double
+		formatString: 0.00
+		lineageTag: 146c9b48-0cf9-46bc-aeb6-a7e29945445c
+		summarizeBy: sum
+		sourceColumn: Financial Savings - Total (£'000)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Other Benefits (£''000)'
+		dataType: double
+		formatString: 0.00
+		lineageTag: c355b081-72a9-4d93-9d8b-9c95204ec935
+		summarizeBy: sum
+		sourceColumn: Other Benefits (£'000)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Economic Benefits £''000'
+		dataType: double
+		formatString: 0.00
+		lineageTag: 79f9790d-cb64-4d31-8f1a-1c68db1f606d
+		summarizeBy: sum
+		sourceColumn: Economic Benefits £'000
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Predicted Costs £''000'
+		dataType: double
+		formatString: 0.00
+		lineageTag: 76097abf-826b-4d9c-b3f1-d7252d2e8e8a
+		summarizeBy: sum
+		sourceColumn: Predicted Costs £'000
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Predicted Return on Investment'
+		dataType: double
+		formatString: 0.00
+		lineageTag: 1db431b0-bd8b-4c8a-84f8-9ba8f9c35c7a
+		summarizeBy: sum
+		sourceColumn: Predicted Return on Investment
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Business Case' = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\OneDrive_plarchi\OneDrive - connect.hku.hk\Data_Engineering\MsC_Edinburgh\XL002942_Business_Intelligence\Coursework_2\PowerBI\Coursework Dataset v1.0_Clean.xlsx"), null, true),
+				    #"Business Case_Sheet" = Source{[Item="Business Case",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Business Case_Sheet", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Project ID", type text}, {"Project Name", type text}, {"Financial Savings - Total (£'000)", type number}, {"Other Benefits (£'000)", type number}, {"Economic Benefits £'000", type number}, {"Predicted Costs £'000", type number}, {"Predicted Return on Investment", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

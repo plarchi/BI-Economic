@@ -1,0 +1,90 @@
+table Contracts
+	lineageTag: 91dcf894-827d-4087-9341-a5d3b254e19e
+
+	column 'Contract ID'
+		dataType: string
+		lineageTag: 27e97d76-7410-4bef-8d36-312db6a97963
+		summarizeBy: none
+		sourceColumn: Contract ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Project ID'
+		dataType: string
+		lineageTag: 6b4dad69-b073-46c7-a210-38531cdae35b
+		summarizeBy: none
+		sourceColumn: Project ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Supplier ID'
+		dataType: string
+		lineageTag: 59e030be-a667-4785-9366-299d87786bd1
+		summarizeBy: none
+		sourceColumn: Supplier ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Contract Requirements'
+		dataType: string
+		lineageTag: d971ddfd-49fb-4f1a-9c76-810de5ebd97c
+		summarizeBy: none
+		sourceColumn: Contract Requirements
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Contract Start Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 47d736e2-761a-4da1-9392-c9f0f55c49b4
+		summarizeBy: none
+		sourceColumn: Contract Start Date
+
+		variation Variation
+			isDefault
+			relationship: fb14be4e-aad9-480b-8a8c-583db92fcad6
+			defaultHierarchy: LocalDateTable_886623f3-03ab-47db-afc4-f418b6122e17.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Contract Expiry '
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: c017bbff-a793-4886-8e6c-3c0986eb6ac9
+		summarizeBy: none
+		sourceColumn: "Contract Expiry "
+
+		variation Variation
+			isDefault
+			relationship: ed87e4d7-c413-4cc5-826a-3e0e97b00b04
+			defaultHierarchy: LocalDateTable_6c281ba3-4e9c-4ad7-ac94-4ac2e52685fd.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Estimated Contract Value (£''000)'
+		dataType: double
+		lineageTag: b1492d4f-15e2-4627-b2e0-cff67922e636
+		summarizeBy: sum
+		sourceColumn: Estimated Contract Value (£'000)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Contracts = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\OneDrive_plarchi\OneDrive - connect.hku.hk\Data_Engineering\MsC_Edinburgh\XL002942_Business_Intelligence\Coursework_2\PowerBI\Coursework Dataset v1.0_Clean.xlsx"), null, true),
+				    Contracts_Sheet = Source{[Item="Contracts",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Contracts_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Contract ID", type text}, {"Project ID", type text}, {"Supplier ID", type text}, {"Contract Requirements", type text}, {"Contract Start Date", type date}, {"Contract Expiry ", type date}, {"Estimated Contract Value (£'000)", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

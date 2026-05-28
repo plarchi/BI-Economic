@@ -1,0 +1,80 @@
+table 'Project Register'
+	lineageTag: 37c95914-03a8-4c4a-96c2-47a45d136939
+
+	column 'Project ID'
+		dataType: string
+		lineageTag: 03c875ba-0953-41b8-86aa-beeea4b70835
+		summarizeBy: none
+		sourceColumn: Project ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Project Name'
+		dataType: string
+		lineageTag: 1f413b65-6dbf-422f-a572-7527c4899a97
+		summarizeBy: none
+		sourceColumn: Project Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Central Government Department'
+		dataType: string
+		lineageTag: 97d77ba3-38d4-46cf-a5cd-63ab25acde15
+		summarizeBy: none
+		sourceColumn: Central Government Department
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Responsible Government Body'
+		dataType: string
+		lineageTag: 968d17b5-c5c8-44d5-8c91-e111e85e12df
+		summarizeBy: none
+		sourceColumn: Responsible Government Body
+
+		annotation SummarizationSetBy = Automatic
+
+	column Programme
+		dataType: string
+		lineageTag: 328fda4f-487e-442f-b0ce-b43879c41efc
+		summarizeBy: none
+		sourceColumn: Programme
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Start Date'
+		dataType: string
+		lineageTag: 62a21e22-c4e6-40a9-9923-fb29ad5d9427
+		summarizeBy: none
+		sourceColumn: Start Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Status at Last Review'
+		dataType: string
+		lineageTag: e1861860-a5f2-47ad-aad8-29559720c9d4
+		summarizeBy: none
+		sourceColumn: Status at Last Review
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Project Manager'
+		dataType: string
+		lineageTag: d63a110a-c2fb-4a86-aa12-434050c19219
+		summarizeBy: none
+		sourceColumn: Project Manager
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Project Register' = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\OneDrive_plarchi\OneDrive - connect.hku.hk\Data_Engineering\MsC_Edinburgh\XL002942_Business_Intelligence\Coursework_2\PowerBI\Coursework Dataset v1.0_Clean.xlsx"), null, true),
+				    #"Project Register_Sheet" = Source{[Item="Project Register",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Project Register_Sheet", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Project ID", type text}, {"Project Name", type text}, {"Central Government Department", type text}, {"Responsible Government Body", type text}, {"Programme", type text}, {"Start Date", type any}, {"Status at Last Review", type text}, {"Project Manager", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

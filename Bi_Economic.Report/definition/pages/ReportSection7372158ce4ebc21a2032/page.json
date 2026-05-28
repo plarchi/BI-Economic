@@ -1,0 +1,8 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "ReportSection7372158ce4ebc21a2032",
+  "displayName": "Project Progress Stage",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280
+}

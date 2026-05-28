@@ -1,0 +1,96 @@
+table 'Actualk Costs'
+	lineageTag: 7c5bc60a-b64d-4c47-8bbb-2071589298e7
+
+	measure SumOfForecast = SUM('Actualk Costs'[Forecast Spend 2010-11]) + SUM('Actualk Costs'[Forecast Spend 2011-12]) + SUM('Actualk Costs'[Forecast Spend 2012-13 & Beyond])
+		lineageTag: 2e280f02-f238-42d1-b30d-090c185b4364
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Project ID'
+		dataType: string
+		lineageTag: ac772f73-3dbc-4f63-b6d4-813a7ffa8cb1
+		summarizeBy: none
+		sourceColumn: Project ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Project Name'
+		dataType: string
+		lineageTag: 566653c3-d915-4d7d-ae1f-964a60fc25d6
+		summarizeBy: none
+		sourceColumn: Project Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Actual Spend to 2010'
+		dataType: double
+		formatString: 0.00
+		lineageTag: 28cbd7ac-f6f8-4a85-9953-fffc4a2c595e
+		summarizeBy: sum
+		sourceColumn: Actual Spend to 2010
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Forecast Spend 2010-11'
+		dataType: double
+		formatString: 0
+		lineageTag: bee0bd01-dcc1-4f15-9026-37d8d4afc4c2
+		summarizeBy: sum
+		sourceColumn: Forecast Spend 2010-11
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	column 'Forecast Spend 2011-12'
+		dataType: double
+		formatString: 0.00
+		lineageTag: c95f0f1f-ba88-4314-a432-94590f9915c4
+		summarizeBy: sum
+		sourceColumn: Forecast Spend 2011-12
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Forecast Spend 2012-13 & Beyond'
+		dataType: double
+		formatString: 0.00
+		lineageTag: 06951691-a8ed-4da6-9af8-1e1607797cb9
+		summarizeBy: sum
+		sourceColumn: Forecast Spend 2012-13 & Beyond
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Client Side Consultancy Costs'
+		dataType: double
+		formatString: 0.00
+		lineageTag: e4f1c3a8-e315-4aab-82fe-6e2dbeaf1c83
+		summarizeBy: sum
+		sourceColumn: Client Side Consultancy Costs
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Total Forecast' = CALCULATE(SUMX('Actualk Costs', 'Actualk Costs'[Forecast Spend 2010-11] + 'Actualk Costs'[Forecast Spend 2011-12] + 'Actualk Costs'[Forecast Spend 2012-13 & Beyond]))
+		lineageTag: 2863db09-3236-4ec6-a24d-17ddeeb02bff
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Actualk Costs' = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\OneDrive_plarchi\OneDrive - connect.hku.hk\Data_Engineering\MsC_Edinburgh\XL002942_Business_Intelligence\Coursework_2\PowerBI\Coursework Dataset v1.0_Clean.xlsx"), null, true),
+				    #"Actualk Costs_Sheet" = Source{[Item="Actualk Costs",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Actualk Costs_Sheet", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Project ID", type text}, {"Project Name", type text}, {"Actual Spend to 2010 (£'000s)", type number}, {"Forecast Spend 2010-11 (£'000s)", type number}, {"Forecast Spend 2011-12 (£'000s)", type number}, {"Forecast Spend 2012-13 & Beyond (£'000s)", type number}, {"Client Side Consultancy Costs (£'s)!!", type number}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"Actual Spend to 2010 (£'000s)", "Actual Spend to 2010"}, {"Forecast Spend 2010-11 (£'000s)", "Forecast Spend 2010-11"}, {"Forecast Spend 2011-12 (£'000s)", "Forecast Spend 2011-12"}, {"Forecast Spend 2012-13 & Beyond (£'000s)", "Forecast Spend 2012-13 & Beyond"}, {"Client Side Consultancy Costs (£'s)!!", "Client Side Consultancy Costs"}}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Renamed Columns",{{"Client Side Consultancy Costs", type number}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

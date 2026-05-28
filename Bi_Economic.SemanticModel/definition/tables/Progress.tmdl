@@ -1,0 +1,53 @@
+table Progress
+	lineageTag: f6b6457a-f93a-415f-a056-311665fc217a
+
+	measure OCGFilterGateway = CALCULATE(COUNTROWS(Progress),FILTER(Progress, CONTAINSSTRING(Progress[OGC review stage], "Gateway")))
+		formatString: 0
+		lineageTag: 206dbb56-6346-4c67-a316-4b14a3375007
+
+	column 'Proj ID'
+		dataType: string
+		lineageTag: 61fb44d9-3782-4d52-863d-214d799f2134
+		summarizeBy: none
+		sourceColumn: Proj ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Project Name'
+		dataType: string
+		lineageTag: 846fdb21-9853-4716-a770-9b773feb272e
+		summarizeBy: none
+		sourceColumn: Project Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Been subject to OGC Gateway?'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 98716890-e233-41b8-bfdb-8b7c757b2061
+		summarizeBy: none
+		sourceColumn: Been subject to OGC Gateway?
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'OGC review stage'
+		dataType: string
+		lineageTag: e9766cc0-d941-4b60-bb72-2ada1b7fdfa2
+		summarizeBy: none
+		sourceColumn: OGC review stage
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Progress = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\OneDrive_plarchi\OneDrive - connect.hku.hk\Data_Engineering\MsC_Edinburgh\XL002942_Business_Intelligence\Coursework_2\PowerBI\Coursework Dataset v1.0_Clean.xlsx"), null, true),
+				    Progress_Sheet = Source{[Item="Progress",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Progress_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Proj ID", type text}, {"Project Name", type text}, {"Been subject to OGC Gateway?", type logical}, {"OGC review stage", type any}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

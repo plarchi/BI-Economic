@@ -1,0 +1,87 @@
+relationship 5a5d763f-b584-4487-a887-15cd55aa2fd7
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Budget.'Last Budget Review'
+	toColumn: LocalDateTable_7e528e10-2624-4090-b507-7be6d1d9622f.Date
+
+relationship fb14be4e-aad9-480b-8a8c-583db92fcad6
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Contracts.'Contract Start Date'
+	toColumn: LocalDateTable_886623f3-03ab-47db-afc4-f418b6122e17.Date
+
+relationship ed87e4d7-c413-4cc5-826a-3e0e97b00b04
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Contracts.'Contract Expiry '
+	toColumn: LocalDateTable_6c281ba3-4e9c-4ad7-ac94-4ac2e52685fd.Date
+
+relationship bc2ff816-0a7a-41f7-a8a3-a8f4c1c9e055
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Critical Action Tracker'.'Date Added '
+	toColumn: LocalDateTable_8f083cb6-8152-40a3-9151-6c8281fdf704.Date
+
+relationship 7192374c-0d97-4b6f-96aa-f799e4d4c9e2
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Critical Action Tracker'.'Target Closure Date '
+	toColumn: LocalDateTable_036329d0-ae0b-4518-baec-d41b900f53b1.Date
+
+relationship AutoDetected_8f4bda7e-56b8-4a7f-b3e2-ee4957e0585f
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: Budget.'Project ID'
+	toColumn: 'Actualk Costs'.'Project ID'
+
+relationship AutoDetected_1e38d908-d59f-47f7-a587-06a9c6281ebe
+	fromColumn: Contracts.'Project ID'
+	toColumn: 'Actualk Costs'.'Project ID'
+
+relationship AutoDetected_ed8c335b-cc4f-4b4d-b6a2-13b272417131
+	fromColumn: 'Critical Action Tracker'.'Project ID'
+	toColumn: 'Actualk Costs'.'Project ID'
+
+relationship AutoDetected_fe213b69-ec00-4596-b24d-198d990b8640
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'Project Register'.'Project ID'
+	toColumn: 'Actualk Costs'.'Project ID'
+
+relationship AutoDetected_5636f962-217b-45f4-a3bf-ab57885519e8
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: Progress.'Project Name'
+	toColumn: 'Actualk Costs'.'Project Name'
+
+relationship 4e7f9ba9-d91f-43e8-b2ee-5ff15fcb231d
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'Actualk Costs'.'Project ID'
+	toColumn: Progress.'Proj ID'
+
+relationship d4b1fcc9-1f94-415a-8ff0-3f9568c9da39
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'Actualk Costs'.'Project Name'
+	toColumn: 'Project Register'.'Project Name'
+
+relationship 763a4b7c-85e3-4029-a880-f615053f9a58
+	fromColumn: 'Risk Issue Register'.Column1
+	toColumn: 'Actualk Costs'.'Project ID'
+
+relationship 78ad4b99-919c-4b8a-a9d8-f8e708a8c832
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'Actualk Costs'.'Project ID'
+	toColumn: 'Business Case'.'Project ID'
+
+relationship 7d817b0c-efa2-4966-9a03-b620923262ea
+	fromColumn: Progress.'OGC review stage'
+	toColumn: Sheet1.Column1
+
+relationship 9ed01770-bcb5-474a-9f90-b28ddbadde62
+	fromColumn: Contracts.'Supplier ID'
+	toColumn: Suppliers.'Supplier ID'
+
+relationship 0ef71cf5-0026-40e5-a154-265df99a66ab
+	fromColumn: 'Risk Issue Register'.Column5
+	toColumn: RiskOption.'Risk Level'
+

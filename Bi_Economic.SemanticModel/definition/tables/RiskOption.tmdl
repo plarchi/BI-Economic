@@ -1,0 +1,17 @@
+table RiskOption
+	lineageTag: 9b762779-1494-447a-a226-3a5f7f2bf955
+
+	column 'Risk Level'
+		lineageTag: e4a3868a-3c78-4f69-8a04-ba6054a067ff
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Risk Level]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition RiskOption = calculated
+		mode: import
+		source = DATATABLE("Risk Level", STRING,{{"High"}, {"Medium"}})
+
+	annotation PBI_Id = 2f609f1696464559b61c2b43ae7fd045
+
