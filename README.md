@@ -46,3 +46,14 @@ This dashboard supports portfolio investment management, business case evaluatio
 ![Project Business & Spending Analytics](Context/Slide3.JPG)
 
 ---
+### Risk & Governance Analytics
+
+This dashboard provides visibility into programme governance, project gateway reviews, and risk management across UK Government ICT initiatives. It enables stakeholders to monitor project progression through gateway stages while identifying programmes that require additional oversight or intervention.
+
+Key metrics include risk type, impact level, severity classification, and the number of projects associated with each governance stage. Interactive filtering allows users to review project portfolios by gateway status, responsible government department, and risk category.
+
+The dashboard supports PMO reporting, enterprise portfolio governance, and risk monitoring by highlighting potential delivery concerns and governance bottlenecks. By consolidating project and risk information into a single view, decision-makers can improve accountability, prioritise mitigation actions, and strengthen programme assurance processes.
+
+![Risk & Governance Analytics](Context/Slide4.JPG)
+
+---
