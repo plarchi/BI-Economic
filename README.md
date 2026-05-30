@@ -9,10 +9,6 @@ Power BI, Data Modelling, KPI Design, Data Visualisation, Business Intelligence,
 
 ---
 
-## Dashboard Overview
-
-![Homepage Dashboard](Context/Slide1.JPG)
-
 ### Executive Portfolio Dashboard
 
 The homepage provides an executive-level overview of the UK Government ICT project portfolio, including:
@@ -25,15 +21,5 @@ The homepage provides an executive-level overview of the UK Government ICT proje
 
 This dashboard serves as the primary reporting layer for senior stakeholders, enabling portfolio performance monitoring and financial decision-making through a single consolidated view.
 
+![Homepage Dashboard](Context/Slide1.JPG)
 ---
-
-## Dashboard Portfolio
-
-1. Executive Portfolio Dashboard
-2. Supplier Intelligence Dashboard
-3. Project Business & Spending Analytics
-4. Risk & Governance Analytics – Gateway Review
-5. Risk & Governance Analytics – Risk Assessment
-6. Critical Project Tracker
-
-This project demonstrates how Business Intelligence platforms can convert complex government programme data into actionable insights for portfolio management, governance, procurement analysis, and investment performance monitoring.
