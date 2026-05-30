@@ -33,3 +33,16 @@ Key metrics include the number of suppliers, operating locations, capability cla
 This dashboard supports procurement analytics, supply chain intelligence, and vendor concentration analysis, helping stakeholders understand supplier dependencies and identify opportunities to diversify procurement strategies.
 
 ![Supplier Intelligence Dashboard](Context/Slide2.JPG)
+---
+
+### Project Business & Spending Analytics
+
+This dashboard focuses on the financial performance of UK Government ICT programmes by comparing forecast spending, economic benefits, and predicted returns across major projects. The visualisation uses KPI indicators and scatter chart analysis to identify relationships between investment levels and expected business outcomes.
+
+Key metrics include forecast expenditure, economic benefit generation, predicted return on investment, and project-level performance comparisons. The scatter chart helps identify high-performing projects, inefficient investments, and potential outliers requiring further review.
+
+This dashboard supports portfolio investment management, business case evaluation, and benefits realisation analysis. By transforming project spending data into measurable performance indicators, decision-makers can prioritise investments, improve resource allocation, and monitor the effectiveness of government ICT programmes.
+
+![Project Business & Spending Analytics](Context/Slide3.JPG)
+
+---
