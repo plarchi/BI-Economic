@@ -23,3 +23,13 @@ This dashboard serves as the primary reporting layer for senior stakeholders, en
 
 ![Homepage Dashboard](Context/Slide1.JPG)
 ---
+
+### Supplier Intelligence Dashboard
+
+This dashboard provides insights into the UK Government ICT supplier ecosystem by analysing supplier distribution, contract activity, capability types, and market concentration. Geographic visualisation enables users to identify supplier locations across the UK, while contract analysis highlights the most active ICT vendors supporting government programmes.
+
+Key metrics include the number of suppliers, operating locations, capability classifications, and supplier contract volumes. The dashboard also presents market share distribution among major ICT suppliers, supporting procurement transparency and vendor performance assessment.
+
+This dashboard supports procurement analytics, supply chain intelligence, and vendor concentration analysis, helping stakeholders understand supplier dependencies and identify opportunities to diversify procurement strategies.
+
+![Supplier Intelligence Dashboard](Context/Slide2.JPG)
