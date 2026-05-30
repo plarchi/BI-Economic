@@ -57,3 +57,23 @@ The dashboard supports PMO reporting, enterprise portfolio governance, and risk 
 ![Risk & Governance Analytics](Context/Slide4.JPG)
 
 ---
+### Risk Detail & Mitigation Analytics
+
+This dashboard provides a detailed view of project risks by enabling users to explore risk severity, impact levels, ownership, mitigation actions, and project status. Interactive filtering allows stakeholders to focus on high- and medium-risk projects while reviewing associated government departments, project managers, and forecast spending.
+
+The dashboard combines quantitative risk metrics with qualitative information such as risk descriptions, mitigation plans, and progress updates. This supports risk assessment, issue management, and governance reviews by providing a structured view of project-level concerns and corrective actions.
+
+![Risk Detail & Mitigation Analytics](Context/Slide5.JPG)
+
+---
+### Critical Project Tracker
+
+This dashboard is designed to monitor critical projects requiring management attention. It consolidates project status updates, action tracking, forecast spending, economic benefits, predicted returns, and RAG (Red-Amber-Green) indicators into a single operational view.
+
+Users can review project ownership, responsible government bodies, key milestones, target closure dates, and outstanding actions. The dashboard supports programme management and executive decision-making by highlighting projects with delivery concerns, unresolved issues, or significant business impact.
+
+By combining financial performance metrics with project status reporting, the dashboard enables proactive intervention and improved oversight of high-priority government ICT programmes.
+
+![Critical Project Tracker](Context/Slide6.JPG)
+
+---
