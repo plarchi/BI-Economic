@@ -62,3 +62,10 @@ Tracks high-priority projects using RAG status indicators, financial metrics, ow
 This project demonstrates how Power BI can transform complex government datasets into actionable business intelligence. By combining financial, supplier, governance, and risk data into a unified reporting platform, the solution supports evidence-based decision-making, portfolio oversight, and performance monitoring across large public-sector programmes.
 
 ---
+## Download Power BI File
+
+The Power BI dashboard file used in this project can be downloaded below:
+
+📊 [Download BI_Economic.pbix](PowerBI/BI_Economic.pbix)
+
+> Note: Power BI Desktop is required to open and explore the dashboard.
