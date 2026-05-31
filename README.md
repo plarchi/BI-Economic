@@ -66,6 +66,6 @@ This project demonstrates how Power BI can transform complex government datasets
 
 The Power BI dashboard file used in this project can be downloaded below:
 
-📊 [Download BI_Economic.pbix](PowerBI/BI_Economic.pbix)
+📊 [Download BI_Economic.pbix](https://github.com/plarchi/BI-Economic/blob/main/PowerBI/Bi_Economic.pbix)
 
 > Note: Power BI Desktop is required to open and explore the dashboard.
